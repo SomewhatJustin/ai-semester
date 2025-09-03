@@ -1,0 +1,124 @@
+provider,model,prompt_id,latency_ms,output_chars,error_flag,prompt,response
+openai,gpt-5-2025-08-07,sum-001,2240,130,False,"Summarize in 3 bullet points: The quick brown fox jumps over the lazy dog. Focus on who, what, and outcome.","- Who: a quick brown fox and a lazy dog
+- What: the fox jumps over the dog
+- Outcome: the fox clears the dog; the dog remains idle"
+ollama,gpt-oss:20b,sum-001,11800,154,False,"Summarize in 3 bullet points: The quick brown fox jumps over the lazy dog. Focus on who, what, and outcome.","- **Who**: A quick, brown fox.  
+- **What**: The fox jumps over the lazy dog.  
+- **Outcome**: The dog remains lazy, while the fox successfully clears it."
+openai,gpt-5-2025-08-07,qa-001,1340,5,False,What is the capital of France? Answer in one word.,Paris
+ollama,gpt-oss:20b,qa-001,2260,5,False,What is the capital of France? Answer in one word.,Paris
+openai,gpt-5-2025-08-07,instr-001,2680,47,False,"Return a JSON object with keys 'greeting' and 'lang', greeting=hello world, lang=en.","{
+  ""greeting"": ""hello world"",
+  ""lang"": ""en""
+}"
+ollama,gpt-oss:20b,instr-001,5150,38,False,"Return a JSON object with keys 'greeting' and 'lang', greeting=hello world, lang=en.","{""greeting"":""hello world"",""lang"":""en""}"
+openai,gpt-5-2025-08-07,reason-001,8230,62,False,"If all bloops are bloopsies and some bloopsies are glips, are some bloops necessarily glips? Answer yes/no with 1 sentence.",No—some bloopsies may be glips without any bloops being glips.
+ollama,gpt-oss:20b,reason-001,11730,3,False,"If all bloops are bloopsies and some bloopsies are glips, are some bloops necessarily glips? Answer yes/no with 1 sentence.",No.
+openai,gpt-5-2025-08-07,code-001,5990,352,False,Write a Python function fib(n) that returns the nth Fibonacci number. Keep it iterative.,"def fib(n):
+    """"""
+    Return the nth Fibonacci number (0-indexed) iteratively.
+    fib(0) = 0, fib(1) = 1, fib(2) = 1, ...
+    """"""
+    if not isinstance(n, int):
+        raise TypeError(""n must be an integer"")
+    if n < 0:
+        raise ValueError(""n must be non-negative"")
+    a, b = 0, 1
+    for _ in range(n):
+        a, b = b, a + b
+    return a"
+ollama,gpt-oss:20b,code-001,33790,1700,False,Write a Python function fib(n) that returns the nth Fibonacci number. Keep it iterative.,"Here’s a clean, iterative implementation that follows the classic “Fibonacci sequence” where  
+
+```
+F(0) = 0,  F(1) = 1
+F(n) = F(n‑1) + F(n‑2)   for n ≥ 2
+```
+
+The function uses a simple `for`‑loop (or `while`‑loop) to iterate up to `n`, keeping only the two most recent values in memory.  
+That gives **O(n)** time and **O(1)** space.
+
+```python
+def fib(n: int) -> int:
+    """"""
+    Return the nth Fibonacci number (0‑based index).
+
+    Parameters
+    ----------
+    n : int
+        Non‑negative integer indicating the position in the Fibonacci sequence.
+        For example:
+            fib(0) → 0
+            fib(1) → 1
+            fib(2) → 1
+            fib(3) → 2
+            ...
+
+    Returns
+    -------
+    int
+        The nth Fibonacci number.
+
+    Raises
+    ------
+    ValueError
+        If ``n`` is negative.
+    """"""
+    if n < 0:
+        raise ValueError(""n must be a non‑negative integer"")
+
+    # Handle the two base cases explicitly
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+
+    # Iteratively compute F(n) keeping only the last two values
+    prev, curr = 0, 1          # prev = F(k-1), curr = F(k)
+    for _ in range(2, n + 1):
+        prev, curr = curr, prev + curr
+
+    return curr
+```
+
+### Usage examples
+
+```python
+>>> fib(0)
+0
+>>> fib(1)
+1
+>>> fib(5)
+5
+>>> fib(10)
+55
+>>> fib(20)
+6765
+```
+
+The algorithm runs in linear time and uses only a handful of integer variables, so it’s both fast and memory‑efficient. If you need a faster (sub‑linear) algorithm for extremely large `n`, you could use matrix exponentiation or Binet’s formula with arbitrary‑precision arithmetic, but for most practical purposes this simple iterative approach is more than sufficient."
+openai,gpt-5-2025-08-07,edit-001,1670,27,False,Rewrite: 'Their going too the store' with correct grammar and spelling.,They're going to the store.
+ollama,gpt-oss:20b,edit-001,6630,27,False,Rewrite: 'Their going too the store' with correct grammar and spelling.,They’re going to the store.
+openai,gpt-5-2025-08-07,style-001,5110,206,False,"Explain HTTP in exactly two sentences, non-technical tone.","HTTP is the everyday language your browser uses to talk with websites so you can see pages, images, and videos. It works by sending requests for what you want and getting back the content in an orderly way."
+ollama,gpt-oss:20b,style-001,12650,226,False,"Explain HTTP in exactly two sentences, non-technical tone.","HTTP is the way your web browser talks to the internet, asking for web pages, videos, and other content. It works like a postal service that sends requests and delivers responses so you can see and use information on websites."
+openai,gpt-5-2025-08-07,extract-001,3500,37,False,"From this text extract a date and total: 'Invoice #77 dated 2024-05-05, total due $1,245.33' Return JSON with keys date,total.","{""date"":""2024-05-05"",""total"":1245.33}"
+ollama,gpt-oss:20b,extract-001,10210,37,False,"From this text extract a date and total: 'Invoice #77 dated 2024-05-05, total due $1,245.33' Return JSON with keys date,total.","{""date"":""2024-05-05"",""total"":1245.33}"
+openai,gpt-5-2025-08-07,comp-001,9390,492,False,Contrast lists vs sets in Python in 3 bullets maximum.,"- Ordering and duplicates: lists are ordered and allow duplicates; sets are unordered collections of unique elements (no duplicates).
+- Access and contents: lists are indexable/sliceable and can contain any objects; sets are not indexable and can only contain hashable (immutable) elements.
+- Performance and ops: membership/add/remove are average O(1) in sets vs O(n) membership in lists; lists support positional operations, while sets support set algebra (union, intersection, difference)."
+ollama,gpt-oss:20b,comp-001,10230,549,False,Contrast lists vs sets in Python in 3 bullets maximum.,"- **Order & Duplicates**  
+  - *List*: ordered, can contain duplicates; `l = [1,2,1]`.  
+  - *Set*: unordered (hash‑based), automatically removes duplicates; `{1,2}`.
+
+- **Mutability & Syntax**  
+  - *List*: mutable, defined with brackets `[]`.  
+  - *Set*: mutable (but elements must be hashable), defined with braces `{}` or `set()`.
+
+- **Typical Operations**  
+  - *List*: sequence operations (indexing, slicing, `append`, `insert`, `sort`).  
+  - *Set*: membership test (`in`), union/intersection/difference, `add`, `remove`, efficient look‑ups."
+openai,gpt-5-2025-08-07,long-001,7230,859,False,Write a 5-sentence micro-essay on the benefits and tradeoffs of using JSON for structured outputs.,"JSON is a lingua franca for structured outputs because it's human-readable, language-agnostic, and supported by mature tooling across platforms. Its simple data model—objects, arrays, and primitives—maps cleanly to most programming languages, enabling easy parsing, generation, and interop through conventions or JSON Schema. For APIs and logs, JSON’s text form is friendly to diffing, debugging, and incremental/streaming processing. The tradeoffs include verbosity, lack of comments and richer types (dates, binary), strict syntax (no trailing commas), and pitfalls like numeric precision and Unicode/escaping quirks. Compared with alternatives (YAML, XML, Protobuf), JSON often wins on simplicity but may lose on compactness, formal schemas, and strong typing, so choosing it depends on whether readability and ubiquity outweigh efficiency and rigor needs."
+ollama,gpt-oss:20b,long-001,16440,701,False,Write a 5-sentence micro-essay on the benefits and tradeoffs of using JSON for structured outputs.,"JSON’s simplicity—lightweight, human‑readable text—makes it instantly accessible across languages and tools, speeding up development cycles.  
+Because every major platform natively parses JSON, it excels at inter‑service data exchange, enabling quick prototyping and integration.  
+The downside is its lack of built‑in type enforcement: without a schema, fields can be misnamed or mis‑typed, increasing runtime errors.  
+Moreover, developers must manually maintain external contracts (e.g., OpenAPI, JSON Schema), adding overhead compared to stricter formats.  
+Ultimately, JSON remains the default for rapid, flexible data interchange when ease of use outweighs the need for strict, typed guarantees."

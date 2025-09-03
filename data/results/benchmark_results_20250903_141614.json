@@ -1,0 +1,242 @@
+[
+  {
+    "prompt_id": "sum-001",
+    "task": "Summarization",
+    "prompt": "Summarize in 3 bullet points: The quick brown fox jumps over the lazy dog. Focus on who, what, and outcome.",
+    "timestamp": "2025-09-03T14:13:33.595034",
+    "openai": {
+      "response": "- Who: A quick brown fox and a lazy dog\n- What: The fox jumps over the dog\n- Outcome: The fox clears the dog without incident (the dog remains lazy)",
+      "model": "gpt-5-2025-08-07",
+      "provider": "openai",
+      "response_time": 4.38,
+      "tokens_used": 209,
+      "success": true,
+      "error": null
+    },
+    "ollama": {
+      "response": "- **Who:** The quick, brown fox.  \n- **What:** Jumps over the lazy dog.  \n- **Outcome:** The fox succeeds, and the dog stays on the ground, unchanged.",
+      "model": "gpt-oss:20b",
+      "provider": "ollama",
+      "response_time": 15.5,
+      "tokens_used": null,
+      "success": true,
+      "error": null
+    }
+  },
+  {
+    "prompt_id": "qa-001",
+    "task": "Factual QA",
+    "prompt": "What is the capital of France? Answer in one word.",
+    "timestamp": "2025-09-03T14:13:37.419100",
+    "openai": {
+      "response": "Paris",
+      "model": "gpt-5-2025-08-07",
+      "provider": "openai",
+      "response_time": 1.67,
+      "tokens_used": 28,
+      "success": true,
+      "error": null
+    },
+    "ollama": {
+      "response": "Paris",
+      "model": "gpt-oss:20b",
+      "provider": "ollama",
+      "response_time": 2.15,
+      "tokens_used": null,
+      "success": true,
+      "error": null
+    }
+  },
+  {
+    "prompt_id": "instr-001",
+    "task": "Instruction-following",
+    "prompt": "Return a JSON object with keys 'greeting' and 'lang', greeting=hello world, lang=en.",
+    "timestamp": "2025-09-03T14:13:47.662403",
+    "openai": {
+      "response": "{\"greeting\":\"hello world\",\"lang\":\"en\"}",
+      "model": "gpt-5-2025-08-07",
+      "provider": "openai",
+      "response_time": 1.76,
+      "tokens_used": 112,
+      "success": true,
+      "error": null
+    },
+    "ollama": {
+      "response": "```json\n{\n  \"greeting\": \"hello world\",\n  \"lang\": \"en\"\n}\n```",
+      "model": "gpt-oss:20b",
+      "provider": "ollama",
+      "response_time": 8.48,
+      "tokens_used": null,
+      "success": true,
+      "error": null
+    }
+  },
+  {
+    "prompt_id": "reason-001",
+    "task": "Reasoning (short)",
+    "prompt": "If all bloops are bloopsies and some bloopsies are glips, are some bloops necessarily glips? Answer yes/no with 1 sentence.",
+    "timestamp": "2025-09-03T14:14:03.473216",
+    "openai": {
+      "response": "No: the glip bloopsies could all be non-bloops, so it doesn\u2019t follow that any bloops are glips.",
+      "model": "gpt-5-2025-08-07",
+      "provider": "openai",
+      "response_time": 3.88,
+      "tokens_used": 332,
+      "success": true,
+      "error": null
+    },
+    "ollama": {
+      "response": "No.",
+      "model": "gpt-oss:20b",
+      "provider": "ollama",
+      "response_time": 11.93,
+      "tokens_used": null,
+      "success": true,
+      "error": null
+    }
+  },
+  {
+    "prompt_id": "code-001",
+    "task": "Code gen",
+    "prompt": "Write a Python function fib(n) that returns the nth Fibonacci number. Keep it iterative.",
+    "timestamp": "2025-09-03T14:14:40.491979",
+    "openai": {
+      "response": "```python\ndef fib(n: int) -> int:\n    \"\"\"Return the n-th Fibonacci number (0-indexed): F(0)=0, F(1)=1.\"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n\n    a, b = 0, 1\n    for _ in range(n):\n        a, b = b, a + b\n    return a\n```",
+      "model": "gpt-5-2025-08-07",
+      "provider": "openai",
+      "response_time": 12.88,
+      "tokens_used": 781,
+      "success": true,
+      "error": null
+    },
+    "ollama": {
+      "response": "Here\u2019s a compact, iterative implementation that returns the \\(n^{\\text{th}}\\) Fibonacci number (with \\(F_0 = 0,\\;F_1 = 1\\)):\n\n```python\ndef fib(n: int) -> int:\n    \"\"\"\n    Return the nth Fibonacci number (0\u2011based).\n    \n    Parameters\n    ----------\n    n : int\n        The index of the Fibonacci number to compute. Must be non\u2011negative.\n    \n    Returns\n    -------\n    int\n        The nth Fibonacci number.\n    \n    Raises\n    ------\n    ValueError\n        If n is negative.\n    \"\"\"\n    if n < 0:\n        raise ValueError(\"n must be a non\u2011negative integer\")\n\n    # Fast\u2011path for the first two Fibonacci numbers\n    if n <= 1:\n        return n\n\n    a, b = 0, 1          # a = F(n\u20112), b = F(n\u20111)\n    for _ in range(2, n + 1):\n        a, b = b, a + b  # shift one step forward\n\n    return b\n```\n\n**Example usage**\n\n```python\n>>> for i in range(10):\n...     print(i, fib(i))\n...\n0 0\n1 1\n2 1\n3 2\n4 3\n5 5\n6 8\n7 13\n8 21\n9 34\n```\n\nThe function runs in linear time \\(O(n)\\) and uses constant extra space.",
+      "model": "gpt-oss:20b",
+      "provider": "ollama",
+      "response_time": 24.14,
+      "tokens_used": null,
+      "success": true,
+      "error": null
+    }
+  },
+  {
+    "prompt_id": "edit-001",
+    "task": "Editing",
+    "prompt": "Rewrite: 'Their going too the store' with correct grammar and spelling.",
+    "timestamp": "2025-09-03T14:14:47.307479",
+    "openai": {
+      "response": "They're going to the store.",
+      "model": "gpt-5-2025-08-07",
+      "provider": "openai",
+      "response_time": 3.41,
+      "tokens_used": 164,
+      "success": true,
+      "error": null
+    },
+    "ollama": {
+      "response": "They\u2019re going to the store.",
+      "model": "gpt-oss:20b",
+      "provider": "ollama",
+      "response_time": 3.4,
+      "tokens_used": null,
+      "success": true,
+      "error": null
+    }
+  },
+  {
+    "prompt_id": "style-001",
+    "task": "Style control",
+    "prompt": "Explain HTTP in exactly two sentences, non-technical tone.",
+    "timestamp": "2025-09-03T14:15:02.953948",
+    "openai": {
+      "response": "HTTP is the language your browser and websites use to talk when you browse the internet. It lets your device ask for pages, pictures, or data, and the site answer with the content so everything shows up on your screen.",
+      "model": "gpt-5-2025-08-07",
+      "provider": "openai",
+      "response_time": 5.82,
+      "tokens_used": 392,
+      "success": true,
+      "error": null
+    },
+    "ollama": {
+      "response": "HTTP is the set of rules that lets your browser talk to websites, sending requests for pages and receiving the information back. Think of it as the language that keeps the internet's vast library of pages connected and readable for everyone.",
+      "model": "gpt-oss:20b",
+      "provider": "ollama",
+      "response_time": 9.83,
+      "tokens_used": null,
+      "success": true,
+      "error": null
+    }
+  },
+  {
+    "prompt_id": "extract-001",
+    "task": "Extraction",
+    "prompt": "From this text extract a date and total: 'Invoice #77 dated 2024-05-05, total due $1,245.33' Return JSON with keys date,total.",
+    "timestamp": "2025-09-03T14:15:14.147124",
+    "openai": {
+      "response": "{\"date\":\"2024-05-05\",\"total\":1245.33}",
+      "model": "gpt-5-2025-08-07",
+      "provider": "openai",
+      "response_time": 3.45,
+      "tokens_used": 262,
+      "success": true,
+      "error": null
+    },
+    "ollama": {
+      "response": "```json\n{\n  \"date\": \"2024-05-05\",\n  \"total\": 1245.33\n}\n```",
+      "model": "gpt-oss:20b",
+      "provider": "ollama",
+      "response_time": 7.74,
+      "tokens_used": null,
+      "success": true,
+      "error": null
+    }
+  },
+  {
+    "prompt_id": "comp-001",
+    "task": "Comparative",
+    "prompt": "Contrast lists vs sets in Python in 3 bullets maximum.",
+    "timestamp": "2025-09-03T14:15:36.372023",
+    "openai": {
+      "response": "- Ordering and uniqueness: lists are ordered and indexable, allow duplicates; sets are unordered (no indexing) and contain unique elements only.\n- Element types and mutability: list elements can be any objects (including unhashable); set elements must be hashable. Both are mutable; frozenset is the immutable set variant.\n- Performance and operations: membership/insert/remove are O(n) for lists vs average O(1) for sets. Lists support slicing/concatenation/sorting; sets support fast deduplication and set algebra (union/intersection/difference). Syntax: list [], set {1, 2}, empty set is set() ({} is a dict).",
+      "model": "gpt-5-2025-08-07",
+      "provider": "openai",
+      "response_time": 11.14,
+      "tokens_used": 742,
+      "success": true,
+      "error": null
+    },
+    "ollama": {
+      "response": "- **Ordering & duplicates**  \n  - *Lists* keep elements in insertion order and allow duplicates.  \n  - *Sets* are unordered collections that automatically drop duplicates.\n\n- **Typical operations**  \n  - Lists excel at indexing, slicing, and ordered iteration (`lst[3]`, `lst[1:5]`).  \n  - Sets shine with set algebra (`union`, `intersection`, `difference`) and fast membership tests (`x in s`).\n\n- **Performance & memory**  \n  - Lists have linear\u2011time membership checks (`O(n)`) but cheap, contiguous storage.  \n  - Sets use a hash table, giving average constant\u2011time (`O(1)`) lookups but at the cost of extra memory and an unordered layout.",
+      "model": "gpt-oss:20b",
+      "provider": "ollama",
+      "response_time": 11.09,
+      "tokens_used": null,
+      "success": true,
+      "error": null
+    }
+  },
+  {
+    "prompt_id": "long-001",
+    "task": "Long-form limit test",
+    "prompt": "Write a 5-sentence micro-essay on the benefits and tradeoffs of using JSON for structured outputs.",
+    "timestamp": "2025-09-03T14:16:14.235397",
+    "openai": {
+      "response": "JSON offers a simple, language-agnostic way to represent nested data that is both machine- and human-readable, with ubiquitous libraries and tooling. Its predictable structure and strong validator ecosystem (e.g., JSON Schema) make it easy to parse, validate, log, diff, and test structured outputs. However, it\u2019s verbose compared to binary formats, forbids comments and trailing commas, and treats object key order as insignificant, which can complicate readability and stable diffs. Native types are limited (no dates, decimals, or bigints), and numeric precision can vary across platforms, so producers and consumers must agree on conventions. Finally, schema evolution, streaming, and security concerns (e.g., injection via unescaped content) require discipline and tooling, but when managed well, JSON remains a pragmatic default for interoperable structured outputs.",
+      "model": "gpt-5-2025-08-07",
+      "provider": "openai",
+      "response_time": 19.13,
+      "tokens_used": 844,
+      "success": true,
+      "error": null
+    },
+    "ollama": {
+      "response": "JSON\u2019s lightweight, text\u2011based format makes it easy for humans to read and for machines to parse, fostering rapid data exchange across platforms. Its native support in virtually all programming languages eliminates the need for custom parsers, reducing implementation effort and minimizing bugs. Yet JSON\u2019s lack of strict type enforcement can introduce ambiguity, letting subtle errors slip through until runtime validation catches them. Moreover, the format does not natively support comments or complex structures like circular references, which can constrain expressive data modeling in large systems. Ultimately, the balance of simplicity, speed, and widespread tooling often tips the scale in JSON\u2019s favor for most web and API scenarios.",
+      "model": "gpt-oss:20b",
+      "provider": "ollama",
+      "response_time": 18.73,
+      "tokens_used": null,
+      "success": true,
+      "error": null
+    }
+  }
+]

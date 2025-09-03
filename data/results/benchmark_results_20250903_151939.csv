@@ -1,0 +1,86 @@
+provider,model,prompt_id,latency_ms,output_chars,error_flag,prompt,response
+openai,gpt-5-2025-08-07,sum-001,3620,158,False,"Summarize in 3 bullet points: The quick brown fox jumps over the lazy dog. Focus on who, what, and outcome.","- Who: A quick brown fox and a lazy dog
+- What: The fox jumps over the dog
+- Outcome: The fox clears the dog successfully; the dog remains unaffected and lazy"
+ollama,gemma3:4b,sum-001,1660,260,False,"Summarize in 3 bullet points: The quick brown fox jumps over the lazy dog. Focus on who, what, and outcome.","Here’s a 3-bullet point summary of “The quick brown fox jumps over the lazy dog”:
+
+*   **Who:** A quick brown fox
+*   **What:** Jumps over a lazy dog
+*   **Outcome:** The fox successfully clears the dog. 
+
+Would you like me to elaborate on any of these points?"
+openai,gpt-5-2025-08-07,qa-001,2810,5,False,What is the capital of France? Answer in one word.,Paris
+ollama,gemma3:4b,qa-001,170,5,False,What is the capital of France? Answer in one word.,Paris
+openai,gpt-5-2025-08-07,instr-001,2120,47,False,"Return a JSON object with keys 'greeting' and 'lang', greeting=hello world, lang=en.","{
+  ""greeting"": ""hello world"",
+  ""lang"": ""en""
+}"
+ollama,gemma3:4b,instr-001,670,60,False,"Return a JSON object with keys 'greeting' and 'lang', greeting=hello world, lang=en.","```json
+{
+  ""greeting"": ""hello world"",
+  ""lang"": ""en""
+}
+```
+"
+openai,gpt-5-2025-08-07,reason-001,4530,61,False,"If all bloops are bloopsies and some bloopsies are glips, are some bloops necessarily glips? Answer yes/no with 1 sentence.",No; the bloopsies that are glips need not include any bloops.
+ollama,gemma3:4b,reason-001,1060,159,False,"If all bloops are bloopsies and some bloopsies are glips, are some bloops necessarily glips? Answer yes/no with 1 sentence.","Yes, some bloops are necessarily glips because if all bloops are bloopsies and some bloopsies are glips, then the bloops that are also bloopsies must be glips."
+openai,gpt-5-2025-08-07,code-001,9590,318,False,Write a Python function fib(n) that returns the nth Fibonacci number. Keep it iterative.,"def fib(n):
+    """"""Return the nth Fibonacci number (0-indexed: fib(0)=0, fib(1)=1).""""""
+    if not isinstance(n, int):
+        raise TypeError(""n must be a non-negative integer"")
+    if n < 0:
+        raise ValueError(""n must be non-negative"")
+    a, b = 0, 1
+    for _ in range(n):
+        a, b = b, a + b
+    return a"
+ollama,gemma3:4b,code-001,2520,311,False,Write a Python function fib(n) that returns the nth Fibonacci number. Keep it iterative.,"```python
+def fib(n):
+  """"""
+  Calculates the nth Fibonacci number iteratively.
+
+  Args:
+    n: The index of the desired Fibonacci number (starting from 0).
+
+  Returns:
+    The nth Fibonacci number.
+  """"""
+  if n <= 1:
+    return n
+  
+  a = 0
+  b = 1
+  for _ in range(2, n + 1):
+    a, b = b, a + b
+  return b
+```"
+openai,gpt-5-2025-08-07,edit-001,2300,27,False,Rewrite: 'Their going too the store' with correct grammar and spelling.,They're going to the store.
+ollama,gemma3:4b,edit-001,2009,346,False,Rewrite: 'Their going too the store' with correct grammar and spelling.,"Here are a few options, depending on the intended meaning:
+
+*   **They’re going to the store.** (This is the most common and grammatically correct option, using the contraction “they’re” for “they are.”)
+*   **They are going to the store.** (This is a more formal option.)
+
+**Note:** “Too” means “also” or “excessively.” “To” indicates direction."
+openai,gpt-5-2025-08-07,style-001,9070,246,False,"Explain HTTP in exactly two sentences, non-technical tone.","HTTP is the basic set of rules your browser uses to request information from a website and receive the response. It lets your device and the site agree on how to send pages, images, and other content so what you asked for shows up on your screen."
+ollama,gemma3:4b,style-001,1330,264,False,"Explain HTTP in exactly two sentences, non-technical tone.","HTTP is like a request-response system for websites – when you type a web address, your browser sends a request to the website asking for its content. The website then sends back the requested content, like the text, images, and code that make up the page you see."
+openai,gpt-5-2025-08-07,extract-001,2920,37,False,"From this text extract a date and total: 'Invoice #77 dated 2024-05-05, total due $1,245.33' Return JSON with keys date,total.","{""date"":""2024-05-05"",""total"":1245.33}"
+ollama,gemma3:4b,extract-001,920,59,False,"From this text extract a date and total: 'Invoice #77 dated 2024-05-05, total due $1,245.33' Return JSON with keys date,total.","```json
+{
+  ""date"": ""2024-05-05"",
+  ""total"": 1245.33
+}
+```
+"
+openai,gpt-5-2025-08-07,comp-001,5970,394,False,Contrast lists vs sets in Python in 3 bullets maximum.,"- Order/indexing: lists are ordered and support indexing/slicing; sets are unordered and not indexable.
+- Duplicates and element types: lists allow duplicates and any objects; sets keep only unique elements and require hashable elements.
+- Operations/performance: list membership is O(n); set membership is average O(1) and supports union/intersection/difference for fast dedup and set algebra."
+ollama,gemma3:4b,comp-001,3020,651,False,Contrast lists vs sets in Python in 3 bullets maximum.,"Okay, here's a contrast between Python lists and sets in 3 concise bullet points:
+
+*   **Order Matters (Lists):** Lists maintain the order in which elements are added. The position of an element within the list is significant.
+*   **No Duplicates (Sets):** Sets only store unique elements. Duplicate values are automatically removed.
+*   **Membership Testing (Sets):** Sets are highly optimized for checking if an element is present.  Checking if an element exists in a set is much faster than in a list, especially for large collections.
+
+
+Would you like me to elaborate on any of these points or perhaps give an example illustrating the differences?"
+openai,gpt-5-2025-08-07,long-001,6690,792,False,Write a 5-sentence micro-essay on the benefits and tradeoffs of using JSON for structured outputs.,"JSON is widely adopted, human-readable, and language-agnostic, making it easy to interchange structured data across systems and languages. Its simple, text-based syntax is easy to generate and parse, with a rich ecosystem of libraries, tooling, and validation techniques. However, JSON is verbose and lacks strong typing and a native schema, which can lead to ambiguity, larger payloads, and runtime validation burdens. It also omits features like comments, dates, and binary types, and imposes strict punctuation rules, making hand-authored or model-generated JSON brittle. For complex contracts and high reliability, formats with schemas (e.g., Protocol Buffers, Avro, or JSON plus JSON Schema) may be preferable, while JSON remains a pragmatic default for interoperability and ease of use."
+ollama,gemma3:4b,long-001,2610,711,False,Write a 5-sentence micro-essay on the benefits and tradeoffs of using JSON for structured outputs.,"JSON (JavaScript Object Notation) has become a dominant format for structured data exchange due to its simplicity and widespread support across programming languages. Its human-readable nature and lightweight structure make it ideal for APIs and data transmission, facilitating seamless integration between systems. However, JSON’s lack of formal typing can lead to runtime errors and necessitate robust validation processes. Furthermore, while easy to read, JSON's flexibility can sometimes result in less descriptive data representations compared to more rigidly typed formats. Despite these tradeoffs, JSON’s overall efficiency and ubiquity continue to make it a valuable tool for structured data management."
