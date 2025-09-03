@@ -1,0 +1,39 @@
+- id: sum-001
+  task: "Summarization"
+  prompt: "Summarize in 3 bullet points: The quick brown fox jumps over the lazy dog. Focus on who, what, and outcome."
+
+- id: qa-001
+  task: "Factual QA"
+  prompt: "What is the capital of France? Answer in one word."
+
+- id: instr-001
+  task: "Instruction-following"
+  prompt: "Return a JSON object with keys 'greeting' and 'lang', greeting=hello world, lang=en."
+
+- id: reason-001
+  task: "Reasoning (short)"
+  prompt: "If all bloops are bloopsies and some bloopsies are glips, are some bloops necessarily glips? Answer yes/no with 1 sentence."
+
+- id: code-001
+  task: "Code gen"
+  prompt: "Write a Python function fib(n) that returns the nth Fibonacci number. Keep it iterative."
+
+- id: edit-001
+  task: "Editing"
+  prompt: "Rewrite: 'Their going too the store' with correct grammar and spelling."
+
+- id: style-001
+  task: "Style control"
+  prompt: "Explain HTTP in exactly two sentences, non-technical tone."
+
+- id: extract-001
+  task: "Extraction"
+  prompt: "From this text extract a date and total: 'Invoice #77 dated 2024-05-05, total due $1,245.33' Return JSON with keys date,total."
+
+- id: comp-001
+  task: "Comparative"
+  prompt: "Contrast lists vs sets in Python in 3 bullets maximum."
+
+- id: long-001
+  task: "Long-form limit test"
+  prompt: "Write a 5-sentence micro-essay on the benefits and tradeoffs of using JSON for structured outputs."
