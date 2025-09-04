@@ -31,9 +31,12 @@ logger = logging.getLogger(__name__)
 class LLMBenchmark:
     def __init__(self):
         self.openai_client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
-        self.openai_model = os.getenv('OPENAI_MODEL', 'gpt-3.5-turbo')
+        self.openai_model = os.getenv('OPENAI_MODEL', '')
         self.ollama_host = os.getenv('OLLAMA_HOST', 'http://localhost:11434')
         self.ollama_model = os.getenv('OLLAMA_MODEL', 'gemma3:latest')
+        # Load OpenAI pricing from environment variables (cost per million tokens)
+        self.openai_cost_per_million_input = float(os.getenv('OPEN_AI_MODEL_CPMM_INPUT', '0'))
+        self.openai_cost_per_million_output = float(os.getenv('OPEN_AI_MODEL_CPMM_OUTPUT', '0'))
         self.results = []
 
     def load_prompts(self, prompts_path: str) -> List[Dict[str, Any]]:
@@ -54,12 +57,21 @@ class LLMBenchmark:
             )
 
             end_time = time.time()
+
+            # Calculate cost based on token usage
+            cost = 0
+            if response.usage:
+                input_cost = (response.usage.prompt_tokens / 1_000_000) * self.openai_cost_per_million_input
+                output_cost = (response.usage.completion_tokens / 1_000_000) * self.openai_cost_per_million_output
+                cost = input_cost + output_cost
+
             return {
                 "response": response.choices[0].message.content,
                 "model": self.openai_model,
                 "provider": "openai",
                 "response_time": round(end_time - start_time, 2),
                 "tokens_used": response.usage.total_tokens if response.usage else None,
+                "cost": round(cost, 6),
                 "success": True,
                 "error": None
             }
@@ -72,6 +84,7 @@ class LLMBenchmark:
                 "provider": "openai",
                 "response_time": round(end_time - start_time, 2),
                 "tokens_used": None,
+                "cost": 0,
                 "success": False,
                 "error": str(e)
             }
@@ -119,6 +132,7 @@ class LLMBenchmark:
                 "provider": "ollama",
                 "response_time": round(end_time - start_time, 2),
                 "tokens_used": None,  # Ollama doesn't always provide token counts
+                "cost": 0,  # Ollama is free/local, no cost
                 "success": True,
                 "error": None
             }
@@ -131,6 +145,7 @@ class LLMBenchmark:
                 "provider": "ollama",
                 "response_time": round(end_time - start_time, 2),
                 "tokens_used": None,
+                "cost": 0,
                 "success": False,
                 "error": str(e)
             }
@@ -194,7 +209,7 @@ class LLMBenchmark:
         with open(filename, 'w', newline='') as f:
             writer = csv.writer(f)
             # Write header
-            writer.writerow(['provider', 'model', 'prompt_id', 'latency_ms', 'output_chars', 'error_flag', 'prompt', 'response'])
+            writer.writerow(['provider', 'model', 'prompt_id', 'latency_ms', 'output_chars', 'cost', 'error_flag', 'prompt', 'response'])
 
             # Write data rows
             for result in self.results:
@@ -209,6 +224,7 @@ class LLMBenchmark:
                     prompt_id,
                     int(openai_result['response_time'] * 1000),  # Convert to ms
                     len(openai_result['response'] or '') if openai_result['response'] else 0,
+                    openai_result['cost'],
                     not openai_result['success'],  # error_flag is True when success is False
                     prompt_text,
                     openai_result['response'] or ''
@@ -222,6 +238,7 @@ class LLMBenchmark:
                     prompt_id,
                     int(ollama_result['response_time'] * 1000),  # Convert to ms
                     len(ollama_result['response'] or '') if ollama_result['response'] else 0,
+                    ollama_result['cost'],
                     not ollama_result['success'],  # error_flag is True when success is False
                     prompt_text,
                     ollama_result['response'] or ''

@@ -1,0 +1,87 @@
+provider,model,prompt_id,latency_ms,output_chars,cost,error_flag,prompt,response
+openai,gpt-5-2025-08-07,sum-001,3400,145,0.001783,False,"Summarize in 3 bullet points: The quick brown fox jumps over the lazy dog. Focus on who, what, and outcome.","- Who: A quick brown fox and a lazy dog
+- What: The fox jumps over the dog
+- Outcome: The fox clears the dog; the dog remains lazy and unaffected"
+ollama,gemma3:4b,sum-001,3040,269,0,False,"Summarize in 3 bullet points: The quick brown fox jumps over the lazy dog. Focus on who, what, and outcome.","Here’s a 3-bullet point summary of ""The quick brown fox jumps over the lazy dog"":
+
+*   **Who:** A quick brown fox
+*   **What:** Jumps over a lazy dog
+*   **Outcome:** The fox successfully clears the dog. 
+
+Would you like me to summarize a different sentence or passage?"
+openai,gpt-5-2025-08-07,qa-001,2200,5,0.000122,False,What is the capital of France? Answer in one word.,Paris
+ollama,gemma3:4b,qa-001,160,5,0,False,What is the capital of France? Answer in one word.,Paris
+openai,gpt-5-2025-08-07,instr-001,2340,38,0.000875,False,"Return a JSON object with keys 'greeting' and 'lang', greeting=hello world, lang=en.","{""greeting"":""hello world"",""lang"":""en""}"
+ollama,gemma3:4b,instr-001,670,60,0,False,"Return a JSON object with keys 'greeting' and 'lang', greeting=hello world, lang=en.","```json
+{
+  ""greeting"": ""hello world"",
+  ""lang"": ""en""
+}
+```
+"
+openai,gpt-5-2025-08-07,reason-001,12540,69,0.006729,False,"If all bloops are bloopsies and some bloopsies are glips, are some bloops necessarily glips? Answer yes/no with 1 sentence.","No, because the bloopsies that are glips might be none of the bloops."
+ollama,gemma3:4b,reason-001,770,115,0,False,"If all bloops are bloopsies and some bloopsies are glips, are some bloops necessarily glips? Answer yes/no with 1 sentence.","Yes, if all bloops are bloopsies and some bloopsies are glips, it logically follows that some bloops must be glips."
+openai,gpt-5-2025-08-07,code-001,9020,240,0.00667,False,Write a Python function fib(n) that returns the nth Fibonacci number. Keep it iterative.,"def fib(n):
+    """"""Return the nth Fibonacci number (F(0)=0, F(1)=1) using an iterative approach.""""""
+    if n < 0:
+        raise ValueError(""n must be non-negative"")
+    a, b = 0, 1
+    for _ in range(n):
+        a, b = b, a + b
+    return a"
+ollama,gemma3:4b,code-001,2820,375,0,False,Write a Python function fib(n) that returns the nth Fibonacci number. Keep it iterative.,"```python
+def fib(n):
+  """"""
+  Calculates the nth Fibonacci number using an iterative approach.
+
+  Args:
+    n: The index of the desired Fibonacci number (non-negative integer).
+
+  Returns:
+    The nth Fibonacci number.
+  """"""
+  if n <= 0:
+    return 0
+  elif n == 1:
+    return 1
+  else:
+    a = 0
+    b = 1
+    for _ in range(2, n + 1):
+      a, b = b, a + b
+    return b
+```"
+openai,gpt-5-2025-08-07,edit-001,3120,27,0.002096,False,Rewrite: 'Their going too the store' with correct grammar and spelling.,They're going to the store.
+ollama,gemma3:4b,edit-001,2820,502,0,False,Rewrite: 'Their going too the store' with correct grammar and spelling.,"Here are a few options for rewriting “Their going too the store” with correct grammar and spelling, depending on the intended meaning:
+
+*   **They’re going to the store.** (This is the most likely correct version, using the contraction “they’re” for “they are.”)
+*   **They are going to the store.** (This is a more formal way of saying the same thing.)
+
+**Key corrections:**
+
+*   ""Their"" corrected to ""They're"" (contraction of ""they are"")
+*   ""too"" corrected to ""to"" (preposition indicating direction)"
+openai,gpt-5-2025-08-07,style-001,12820,187,0.005023,False,"Explain HTTP in exactly two sentences, non-technical tone.","HTTP is how your browser asks websites for pages, images, or videos and gets them back. It’s like ordering at a counter: you make a request, and the site hands you the item you asked for."
+ollama,gemma3:4b,style-001,1070,220,0,False,"Explain HTTP in exactly two sentences, non-technical tone.",HTTP is basically how your computer asks for and receives information from websites – like when you click a link or load a picture. It’s the language that allows your browser and the website server to talk to each other!
+openai,gpt-5-2025-08-07,extract-001,5190,37,0.002875,False,"From this text extract a date and total: 'Invoice #77 dated 2024-05-05, total due $1,245.33' Return JSON with keys date,total.","{""date"":""2024-05-05"",""total"":1245.33}"
+ollama,gemma3:4b,extract-001,930,59,0,False,"From this text extract a date and total: 'Invoice #77 dated 2024-05-05, total due $1,245.33' Return JSON with keys date,total.","```json
+{
+  ""date"": ""2024-05-05"",
+  ""total"": 1245.33
+}
+```
+"
+openai,gpt-5-2025-08-07,comp-001,5550,644,0.003402,False,Contrast lists vs sets in Python in 3 bullets maximum.,"- Structure: List is ordered, indexable/sliceable, allows duplicates, elements can be any type (including mutable). Set is unordered, unindexed, stores unique elements only, and elements must be hashable (typically immutable).
+- Performance/ops: List membership O(n); append/pop end O(1) amortized; insert/remove middle O(n). Set membership/add/remove average O(1); supports set algebra (union, intersection, difference); lists support sequence ops (concatenation, repetition, sort).
+- Use cases: Use lists when order/position matters or duplicates are needed; use sets for fast membership tests, deduplication, and mathematical set operations."
+ollama,gemma3:4b,comp-001,3020,598,0,False,Contrast lists vs sets in Python in 3 bullets maximum.,"Okay, here's a contrast between lists and sets in Python, in 3 bullet points:
+
+*   **Order Matters (Lists):** Lists maintain the order in which elements are added. The position of an element within the list is significant.
+*   **No Duplicates (Sets):** Sets only contain unique elements.  Duplicate values are automatically discarded.
+*   **Data Access (Lists):** You can access elements in a list by their index (position). Sets are unordered, so you can't directly access elements by index.
+
+
+
+Would you like me to elaborate on any of these points, or perhaps give an example of how they're used?"
+openai,gpt-5-2025-08-07,long-001,10650,832,0.005405,False,Write a 5-sentence micro-essay on the benefits and tradeoffs of using JSON for structured outputs.,"JSON has become the lingua franca for structured outputs because it is simple, human-readable, and supported by virtually every programming language and tool. Its schema-less nature speeds iteration and makes it easy to add fields, while predictable primitives map cleanly to native types and enable efficient parsing. The ubiquity of validators, linters, JSON Schema, and serialization libraries reduces integration friction across systems and teams. However, JSON can be verbose and inefficient for large or binary payloads, lacks first-class comments and dates, and has limitations around number precision and NaN/Infinity semantics. And without strict schemas, producers and consumers risk drift, fragile contracts, and security pitfalls like injection or resource exhaustion unless validation and limits are carefully enforced."
+ollama,gemma3:4b,long-001,2890,748,0,False,Write a 5-sentence micro-essay on the benefits and tradeoffs of using JSON for structured outputs.,"JSON (JavaScript Object Notation) has become a dominant format for structured data exchange due to its simplicity and widespread support across programming languages. Its human-readable format and lightweight nature make it incredibly efficient for transferring data over networks, streamlining API integrations and data serialization. However, JSON's lack of native typing can lead to runtime errors if data types aren’t carefully validated, requiring developers to implement additional checks. Furthermore, complex data structures within JSON can become verbose and difficult to manage compared to more strongly typed formats.  Despite these tradeoffs, JSON’s ubiquity and ease of use continue to make it a practical choice for many applications."

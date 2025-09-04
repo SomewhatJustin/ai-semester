@@ -44,3 +44,6 @@ Gemma3:4b, on the other hand:
 The reasoning sounds ~right but falls down upon further inspection.
 
 You can see more in the [results csv](../data/results/benchmark_results_20250903_151939.csv)
+
+**9/4/25**
+Added cost for API calls. GPT-5 is quite cheap!
