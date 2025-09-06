@@ -50,7 +50,7 @@
 ## Week 9 — When (Not) to Finetune
 **Read:** Ch.7 (reasons to/NOT to finetune; memory math; PEFT/LoRA/QLoRA; merging)
 **Lab:** PEFT on 7B with small domain set (2–5k pairs); track loss + task deltas vs. RAG
-**Deliverable:** Finetune report (quality delta, GPU hrs, cost, serve plan)
+**Deliverable:** Finetune report (quality delta, GPU hrs, cost, serve plan). Use Prime Intellect to rent GPUs.
 
 ## Week 10 — Dataset Engineering Pipeline
 **Read:** Ch.8 (quality/coverage/quantity; synth data; verification; distillation)
