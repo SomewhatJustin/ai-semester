@@ -13,3 +13,6 @@ bench:
 fmt:
     ruff check . --fix || true
     ruff format .
+
+lab_2:
+    source .venv/bin/activate && python labs/lab_2.py

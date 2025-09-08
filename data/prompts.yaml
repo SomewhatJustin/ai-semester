@@ -37,3 +37,7 @@
 - id: long-001
   task: "Long-form limit test"
   prompt: "Write a 5-sentence micro-essay on the benefits and tradeoffs of using JSON for structured outputs."
+
+- id: story-001
+  task: "Creative writing"
+  prompt: "Write a short story (200–300 words) that begins with someone finding a locked box in an unusual place. The tone should be mysterious but not scary. End with a twist that changes the reader’s understanding of the box."
